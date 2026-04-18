@@ -1,7 +1,7 @@
 # task_manager.py
 # Creates, stores, and retrieves tasks while managing their status.
 
-import json_util as jsut
+import json_util as json
 
 class Task:
     title = ""
@@ -18,7 +18,7 @@ class Task:
             self.completed = not self.completed
 
 def load():
-    loadedValue = jsut.get_value("procrast.json", ["tasks"])
+    loadedValue = json.get_value("procrast.json", ["tasks"])
     if loadedValue == None:
         return []
 
@@ -38,7 +38,7 @@ def save():
             "title": t.title,
             "completed": t.completed
         })
-    jsut.set_value("procrast.json", "tasks", current)
+    json.set_value("procrast.json", "tasks", current)
 
 def create(title: str):
     new = Task(title)
